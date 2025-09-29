@@ -26,7 +26,7 @@ export function FormularioDeEvento() {
           <CampoDeEntrada type="date" id="dataEvento" name="dataEvento" />
         </CampoDeformulario>
         <CampoDeformulario>
-          <Label htmlFor="dataEvento">Data do evento</Label>
+          <Label htmlFor="dataEvento">Tema do evento</Label>
           <ListaSuspensa />
         </CampoDeformulario>
       </div>
