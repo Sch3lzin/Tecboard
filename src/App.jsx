@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import { Banner } from "./components/Banner";
 import { CardEvento } from "./components/CardEvento";
@@ -32,14 +33,18 @@ function App() {
     },
   ];
 
-  const eventos = [
+  const [eventos, setEventos] = useState([
     {
       capa: "https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png",
       tema: temas[0],
       data: new Date(),
       titulo: "Mulheres no Front-end",
     },
-  ];
+  ]);
+
+  function adicionarEvento(evento) {
+    setEventos([...eventos, evento]);
+  }
 
   return (
     <main>
@@ -47,12 +52,14 @@ function App() {
         <img src="/assets/logo.png" alt="" />
       </header>
       <Banner />
-      <FormularioDeEvento />
+      <FormularioDeEvento temas={temas} aoSubmeter={adicionarEvento} />
       {temas.map(function (item) {
         return (
           <section key={item.id}>
             <Tema tema={item} />
-            <CardEvento evento={eventos[0]} />
+            {eventos.map(function (item, index) {
+              return <CardEvento key={index} evento={item} />;
+            })}
           </section>
         );
       })}
